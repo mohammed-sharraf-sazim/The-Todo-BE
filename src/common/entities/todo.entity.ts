@@ -2,10 +2,10 @@ import { Entity, Property, Enum } from '@mikro-orm/core';
 import { CustomBaseEntity } from './custom-base.entity';
 
 export enum TaskPriority {
-  HIGH = 'high',
-  MEDIUM = 'medium',
-  LOW = 'low',
-  NO = 'no_priority',
+  HIGH = 'High',
+  MEDIUM = 'Medium',
+  LOW = 'Low',
+  NO = 'No priority',
 }
 
 @Entity()

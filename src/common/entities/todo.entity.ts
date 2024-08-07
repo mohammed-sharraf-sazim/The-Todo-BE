@@ -19,6 +19,6 @@ export class Todo extends CustomBaseEntity {
   @Enum(() => TaskPriority)
   priority: TaskPriority = TaskPriority.NO;
 
-  @Property({ type: 'date' })
-  dueDate?: Date;
+  @Property({ onCreate: () => new Date() })
+  dueDate?: Date = new Date();
 }

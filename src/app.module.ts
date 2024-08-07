@@ -1,9 +1,10 @@
 import { Module, OnModuleInit, Logger } from '@nestjs/common';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { MikroORM } from '@mikro-orm/core';
+import { TodosModule } from './todos/todos.module';
 import config from './db/mikro-orm.config';
 @Module({
-  imports: [MikroOrmModule.forRoot({ ...config })],
+  imports: [MikroOrmModule.forRoot({ ...config }), TodosModule],
 })
 export class AppModule implements OnModuleInit {
   private readonly logger = new Logger(AppModule.name);

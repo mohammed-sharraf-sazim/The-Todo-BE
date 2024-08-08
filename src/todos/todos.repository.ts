@@ -32,4 +32,18 @@ export class TodoRepository {
     const todo = this.em.getReference(Todo, id);
     this.em.remove(todo);
   }
+
+  async markTaskAsCompleted(id: string): Promise<Todo> {
+    const task = await this.em.findOne(Todo, { id });
+    if (task) {
+      task.isCompleted = !task.isCompleted;
+      this.em.persist(task);
+    }
+    return task;
+  }
+
+  async clearCompletedTasks(): Promise<void> {
+    const completedTasks = await this.em.find(Todo, { isCompleted: true });
+    completedTasks.forEach((task) => this.em.remove(task));
+  }
 }

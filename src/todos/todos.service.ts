@@ -76,4 +76,28 @@ export class TodosService {
       throw new InternalServerErrorException('Failed to remove todo');
     }
   }
+
+  async markTaskAsCompleted(id: string): Promise<Todo> {
+    try {
+      const todo = await this.todosRepository.markTaskAsCompleted(id);
+      if (!todo) {
+        throw new NotFoundException(`Todo with ID ${id} not found`);
+      }
+      await this.em.flush();
+      return new TodoSerializer(todo).serialize() as unknown as Todo;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Failed to mark task as completed',
+      );
+    }
+  }
+
+  async clearCompletedTasks(): Promise<void> {
+    try {
+      await this.todosRepository.clearCompletedTasks();
+      await this.em.flush();
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to clear completed tasks');
+    }
+  }
 }

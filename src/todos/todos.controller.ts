@@ -32,4 +32,14 @@ export class TodosController {
   update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
     return this.todosService.updateTodo(id, updateTodoDto);
   }
+
+  @Patch(':id/toggle')
+  markTaskAsCompleted(@Param('id') id: string) {
+    return this.todosService.markTaskAsCompleted(id);
+  }
+
+  @Delete('clear/completed')
+  clearCompletedTasks() {
+    return this.todosService.clearCompletedTasks();
+  }
 }

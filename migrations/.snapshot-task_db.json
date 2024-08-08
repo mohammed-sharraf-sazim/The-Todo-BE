@@ -63,24 +63,24 @@
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "default": "'no_priority'",
+          "default": "'No priority'",
           "enumItems": [
-            "high",
-            "medium",
-            "low",
-            "no_priority"
+            "High",
+            "Medium",
+            "Low",
+            "No priority"
           ],
           "mappedType": "enum"
         },
         "due_date": {
           "name": "due_date",
-          "type": "date",
+          "type": "timestamptz",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
-          "mappedType": "date"
+          "length": 6,
+          "mappedType": "datetime"
         }
       },
       "name": "todo",
